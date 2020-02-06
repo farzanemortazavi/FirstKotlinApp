@@ -7,14 +7,16 @@ import android.widget.Toast
 import androidx.core.view.GravityCompat
 import kotlinx.android.synthetic.main.activity_main.*
 
-class MainActivity : AppCompatActivity(), IClickListener {
-    override fun onClick(name: String) {
-        Toast.makeText(this,"Show "+ name+ " Activity" ,Toast.LENGTH_LONG).show()
-    }
+class MainActivity : AppCompatActivity() {
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
+        if(!this.isInternetAvailable()){
+            this.showToast("No Internet access",Toast.LENGTH_LONG)
+        }
 
         btnMenu.setOnClickListener{
             try {
@@ -25,9 +27,19 @@ class MainActivity : AppCompatActivity(), IClickListener {
                Log.d("myMain", e.message)
             }
 
-            val lstMenuItems = arrayListOf<String>("Contacts", "Calls", "Messages","Setting")
-            val  myAdapter = RecyclerAdapter(lstMenuItems,this)
-            recyclermenu.adapter=myAdapter
+            var clickListener: (String)->Unit={
+               // Toast.makeText(this,"Show "+ it+ " Activity" ,Toast.LENGTH_LONG).show()
+                this.showToast("Show "+ it+ " Activity")
+
         }
+
+            val lstMenuItems = arrayListOf<String>("Contacts", "Calls", "Messages","Setting")
+            val  myAdapter = RecyclerAdapter(lstMenuItems,clickListener)
+            recyclermenu.adapter=myAdapter
+
+
+        }
+
+
     }
 }
