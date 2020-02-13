@@ -35,7 +35,7 @@ class PrayerActivity : AppCompatActivity(), PrayerContract.View {
 
     }
 
-    override fun getContryCity(): Pair<String, String> {
+    override fun getCountryCity(): Pair<String, String> {
         val country = edtCountry.text.trim().toString()
         val city = edtCity.text.trim().toString()
         return country to city
@@ -59,8 +59,6 @@ class PrayerActivity : AppCompatActivity(), PrayerContract.View {
             presenter.onPrayerButtonClicked()
         }
 
-        // Log.d("myTest", "12:53".split(":"))
-        //val s = "12:44".dropLast(3)
-        //Log.d("myTest", s)
+
     }
 }

@@ -2,7 +2,7 @@ package com.example.firstkotlinapp.mvp
 
 interface PrayerContract {
     interface View{
-        fun getContryCity(): Pair<String,String>
+        fun getCountryCity(): Pair<String,String>
         fun showPrayerTime(prayerTimings: Timings?)
         fun showUserTime()
         fun showError()
