@@ -1,10 +1,12 @@
 package com.example.firstkotlinapp
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
 import androidx.core.view.GravityCompat
+import com.example.firstkotlinapp.mvp.PrayerActivity
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
@@ -28,12 +30,14 @@ class MainActivity : AppCompatActivity() {
             }
 
             var clickListener: (String)->Unit={
-               // Toast.makeText(this,"Show "+ it+ " Activity" ,Toast.LENGTH_LONG).show()
-                this.showToast("Show "+ it+ " Activity")
+                 //Toast.makeText(this,"Show "+ it+ " Activity" ,Toast.LENGTH_LONG).show()
+                //this.showToast("Show "+ it+ " Activity")
+                val intent=Intent(this, PrayerActivity::class.java)
+                startActivity(intent)
 
         }
 
-            val lstMenuItems = arrayListOf<String>("Contacts", "Calls", "Messages","Setting")
+            val lstMenuItems = arrayListOf<String>("Prayer Times")
             val  myAdapter = RecyclerAdapter(lstMenuItems,clickListener)
             recyclermenu.adapter=myAdapter
 
