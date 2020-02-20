@@ -2,7 +2,9 @@ package com.example.firstkotlinapp.mvvm
 
 import com.example.firstkotlinapp.mvp.Timings
 import com.example.firstkotlinapp.mvp.prayerModel
+import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
+import io.reactivex.schedulers.Schedulers
 
 class ViewModel {
     val disposable=CompositeDisposable()
@@ -24,6 +26,8 @@ class ViewModel {
         //val (country, city)=view.getCountryCity()
 
          disposable.add(model.getAdhanObservable(country,city)
+             .subscribeOn(Schedulers.io())
+             .observeOn(AndroidSchedulers.mainThread())
              .subscribe({
                  val result=it.data.timings
                  //send result to view
@@ -34,7 +38,9 @@ class ViewModel {
              }))
 
 
+    }
 
-
+    fun clearDisposable(){
+        disposable.dispose()
     }
 }

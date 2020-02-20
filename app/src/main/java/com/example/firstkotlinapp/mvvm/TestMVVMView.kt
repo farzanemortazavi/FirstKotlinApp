@@ -24,6 +24,12 @@ class TestMVVMView : AppCompatActivity() {
         }
     }
 
+    override fun onDestroy() {
+        super.onDestroy()
+
+        myViewModel.clearDisposable()
+    }
+
      fun showUserTime() {
 
         val currentTime = Calendar.getInstance().time
