@@ -1,14 +1,21 @@
 package com.example.firstkotlinapp.mvvm
 
+import android.util.Log
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.ViewModel
 import com.example.firstkotlinapp.mvp.Timings
+import com.example.firstkotlinapp.mvp.aladhanPojo
 import com.example.firstkotlinapp.mvp.prayerModel
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
 
-class ViewModel {
-    val disposable=CompositeDisposable()
-    val model= Model()
+class ViewModel: ViewModel() {
+    private val disposable=CompositeDisposable()
+    private val model= Model()
+    private val adhanResponse=MutableLiveData<aladhanPojo>()
+    private val adhanError=MutableLiveData<String?>()
 
     fun getPartsofDayByHour(time: String): String {
         val hour=time.toInt()
@@ -29,18 +36,24 @@ class ViewModel {
              .subscribeOn(Schedulers.io())
              .observeOn(AndroidSchedulers.mainThread())
              .subscribe({
-                 val result=it.data.timings
-                 //send result to view
+                 adhanResponse.value=it
+                 Log.d("myTest",it.data.timings.Fajr)
 
              },{
-                 val error=it.message
-                 //send error to view
+                Log.d("myTest",it.message)
+                 adhanError.value="Error in Retrieving aladhan data"
              }))
 
 
     }
 
-    fun clearDisposable(){
+    fun getResponse():LiveData<aladhanPojo> = adhanResponse
+    fun getError():LiveData<String?> = adhanError
+
+
+
+    override fun onCleared() {
         disposable.dispose()
+        super.onCleared()
     }
 }

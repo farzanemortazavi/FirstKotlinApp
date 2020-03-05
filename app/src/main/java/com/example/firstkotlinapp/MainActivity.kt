@@ -7,6 +7,7 @@ import android.util.Log
 import android.widget.Toast
 import androidx.core.view.GravityCompat
 import com.example.firstkotlinapp.mvp.PrayerActivity
+import com.example.firstkotlinapp.mvvm.TestMVVMView
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
@@ -30,9 +31,9 @@ class MainActivity : AppCompatActivity() {
             }
 
             var clickListener: (String)->Unit={
-                 //Toast.makeText(this,"Show "+ it+ " Activity" ,Toast.LENGTH_LONG).show()
-                //this.showToast("Show "+ it+ " Activity")
-                val intent=Intent(this, PrayerActivity::class.java)
+
+                //val intent=Intent(this, PrayerActivity::class.java)
+                val intent=Intent(this, TestMVVMView::class.java)
                 startActivity(intent)
 
         }
