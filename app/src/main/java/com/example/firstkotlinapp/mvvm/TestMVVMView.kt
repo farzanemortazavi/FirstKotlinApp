@@ -19,7 +19,7 @@ import java.util.*
 
 class TestMVVMView : AppCompatActivity() {
     private lateinit var myViewModel:ViewModel
-    lateinit var mainHandler: Handler
+    private lateinit var mainHandler: Handler
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
