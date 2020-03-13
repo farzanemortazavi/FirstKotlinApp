@@ -15,17 +15,6 @@ class daggerModel @Inject constructor(private val retrofit: Retrofit){
 
 
     }
-    /*
-    private fun getPrayTimeData(): IobservableRetrofit {
-        val retrofit= Retrofit.Builder()
-            .baseUrl("https://api.aladhan.com/v1/")
-            .addConverterFactory(GsonConverterFactory.create())
-            .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
-            .build()
-        return retrofit.create(IobservableRetrofit::class.java)
-
-
-    }*/
 
     //******************************************************************
     fun getAdhanObservable(country: String, city: String): Observable<aladhanPojo> {

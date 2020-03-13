@@ -18,6 +18,8 @@ class koinMVVMActivity : AppCompatActivity() {
     private lateinit var myViewModel: koinViewModel
     private lateinit var mainHandler: Handler
 
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_koin_mvvm)

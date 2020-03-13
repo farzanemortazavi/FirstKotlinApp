@@ -7,9 +7,18 @@ apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-kapt'
 
 def lifecycle_version = "2.2.0"
+def koin_version = "2.1.3"
 
 
 android {
+    signingConfigs {
+        release {
+            storeFile file('D:\\AndroidDevelopment\\FirstKotlinApp\\keyStore.jks')
+            storePassword 'app@321'
+            keyPassword 'app@321'
+            keyAlias = 'key0'
+        }
+    }
     compileSdkVersion 28
     buildToolsVersion "29.0.1"
     defaultConfig {
@@ -24,6 +33,7 @@ android {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.release
         }
     }
 
@@ -62,7 +72,11 @@ dependencies {
     //ViewModel
     implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycle_version"
 
-    //dagger 2
+    //Dagger 2
     implementation 'com.google.dagger:dagger:2.26'
     kapt 'com.google.dagger:dagger-compiler:2.26'
+
+    //Koin
+    implementation "org.koin:koin-android:$koin_version"
+    implementation "org.koin:koin-android-viewmodel:$koin_version"
 }
